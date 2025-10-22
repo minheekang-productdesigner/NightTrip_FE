@@ -11,11 +11,17 @@ export default function SearchPage() {
   useEffect(() => {
     (async () => {
       try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/search`);
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_API_URL}/search`,
+          { cache: 'no-store' } // ✅ 캐시 비활성화 (빌드 타임아웃 방지)
+        );
+
+        if (!res.ok) throw new Error('Failed to fetch');
         const result = await res.json();
         setData(result);
-      } catch {
-        setData([]); // 서버가 없어도 화면은 뜨게
+      } catch (error) {
+        console.error('Search fetch error:', error);
+        setData([]); // 서버 오류 시에도 화면 표시
       }
     })();
   }, []);
@@ -24,3 +30,6 @@ export default function SearchPage() {
     <div>
       <h2>Search Result</h2>
       <pre>{JSON.stringify(data, null, 2)}</pre>
+    </div>
+  );
+}
