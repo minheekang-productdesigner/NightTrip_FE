@@ -3,6 +3,6 @@ export const revalidate = 0;
 
 import MainPage from '@/components/pages/MainPage';
 
-export default async function HomePage() {
+export default function HomePage() {
   return <MainPage />;
 }
