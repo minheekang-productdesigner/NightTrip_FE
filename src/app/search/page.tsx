@@ -5,6 +5,7 @@ export const revalidate = 0;
 
 import { useEffect, useState } from 'react';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function SearchPage() {
   const [data, setData] = useState<any>(null);
 
