@@ -5,20 +5,19 @@ export const revalidate = 0;
 
 import { useEffect, useState } from 'react';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function SearchPage() {
-  const [data, setData] = useState<any>(null);
+  // ✅ any 사용 금지 → unknown | null 로 변경
+  const [data, setData] = useState<unknown | null>(null);
 
   useEffect(() => {
     (async () => {
       try {
         const res = await fetch(
           `${process.env.NEXT_PUBLIC_API_URL}/search`,
-          { cache: 'no-store' } // ✅ 캐시 비활성화 (빌드 타임아웃 방지)
+          { cache: 'no-store' }
         );
-
         if (!res.ok) throw new Error('Failed to fetch');
-        const result = await res.json();
+        const result: unknown = await res.json();
         setData(result);
       } catch (error) {
         console.error('Search fetch error:', error);
