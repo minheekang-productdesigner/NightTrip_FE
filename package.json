@@ -3,13 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack --experimental-https --hostname local.nighttrip.co.kr --port 3000",
-    "build:prod": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
-  },
+  "dev": "next dev",
+  "build": "next build",
+  "vercel-build": "next build",
+  "start": "next start",
+  "lint": "next lint",
+  "storybook": "storybook dev -p 6006",
+  "build-storybook": "storybook build"
+},
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.14",
     "@radix-ui/react-label": "^2.1.7",
